@@ -1,0 +1,4 @@
+        #test = MDLabel(text='sup', halign='center', theme_text_color='Custom',
+                       text_color=(127/255.0, 30/255.0, 33/255.0), #to add your own costum color
+                       font_style='H1')
+        # icon = MDIcon(icon='language-python', halign='right')
