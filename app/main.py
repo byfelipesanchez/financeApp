@@ -26,8 +26,12 @@ class financeApp(MDApp):
         return screen
 
     def show_data(self, obj):
+        if self.username.text is "":
+            check_string = 'Please Enter a Username'
+        else:
+            check_string =  'This Username Does Not Exist'
         close_btn = MDRoundFlatButton(text='Close', on_release=self.close_dialog)
-        self.dialog = MDDialog(title='User', text=self.username.text,
+        self.dialog = MDDialog(title='User', text=check_string,
                                size_hint=(0.7, 1),
                                buttons=[close_btn])
         self.dialog.open()
