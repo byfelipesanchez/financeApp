@@ -6,3 +6,50 @@ MDTextField:
     pos_hint: {'center_x':0.5, 'center_y':0.5 }
     size_hint_x: None
 """
+
+KV = '''
+MDBoxLayout:
+    orientation: "vertical"
+
+    MDToolbar:
+        title: "Felipe's Finance Tracker"
+        left_action_items: [["menu", lambda x:app.callback()]]
+
+    MDLabel:
+        text: "Content"
+        halign: "center"
+    
+        # Will always be at the bottom of the screen.
+    MDBottomAppBar:
+
+        MDToolbar:
+            icon: "plus"
+            type: "bottom"
+            mode: "free-end"
+
+
+        
+'''
+
+# KV = '''
+#      MDNavigationLayout:
+#
+#          ScreenManager:
+#
+#             Screen:
+#
+#                 BoxLayout:
+#                     orientaion:'vertical'
+#
+#                     MDToolbar:
+#                         title: ''
+#                         elevation: 10
+#                         left_action_items: [['menu, lambda x: nav_drawer.set_state("open")]]
+#
+#                     widget:
+#
+#         MDfinanceApp:
+#             id: nav_drawer
+#
+#             ContentNavigationDrawer:
+# '''
