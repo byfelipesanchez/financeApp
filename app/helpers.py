@@ -8,6 +8,9 @@ MDTextField:
 """
 
 KV = '''
+
+Screen
+
 MDBoxLayout:
     orientation: "vertical"
 
@@ -19,16 +22,18 @@ MDBoxLayout:
         text: "Content"
         halign: "center"
     
-        # Will always be at the bottom of the screen.
-    MDBottomAppBar:
 
-        MDToolbar:
-            icon: "plus"
-            type: "bottom"
-            mode: "free-end"
+    
+'''
 
+KV = '''
 
-        
+Screen: 
+
+    MDFloatingActionButtonSpeedDial:
+        data: app.data
+        root_button_anim: True
+
 '''
 
 # KV = '''
