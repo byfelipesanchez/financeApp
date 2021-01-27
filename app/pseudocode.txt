@@ -60,3 +60,13 @@
 #
 #
 # signup()ui
+
+
+
+    # data = {
+    #     'currency-usd-off': 'Expense',
+    #     'currency-usd': 'Saving'
+    #
+    # }
+    #
+    # self.add_widget

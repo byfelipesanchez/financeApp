@@ -1,0 +1,22 @@
+<Design>
+
+    test: test
+
+    GridLayout:
+        cols: 1
+        size: root.width -200, root.height -200
+        pos: 100, 100
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "test"
+
+            TextInput:
+                id: test
+                multinline:False
+
+            Button:
+                text:"submit"
+                on_press:root.btn()
