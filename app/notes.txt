@@ -1,3 +1,5 @@
 https://material.io/design
 
 create envelopes for different expenses
+
+https://www.techwithtim.net/tutorials/kivy-tutorial/example-gui/
