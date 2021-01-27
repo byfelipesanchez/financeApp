@@ -11,8 +11,8 @@ KV = '''
 
 Screen
 
-MDBoxLayout:
-    orientation: "vertical"
+    MDBoxLayout:
+        orientation: "vertical"
 
     MDToolbar:
         title: "Felipe's Finance Tracker"
@@ -26,15 +26,15 @@ MDBoxLayout:
     
 '''
 
-KV = '''
-
-Screen: 
-
-    MDFloatingActionButtonSpeedDial:
-        data: app.data
-        root_button_anim: True
-
-'''
+# KV = '''
+#
+# Screen:
+#
+#     MDFloatingActionButtonSpeedDial:
+#         data: app.data
+#         root_button_anim: True
+#
+# '''
 
 # KV = '''
 #      MDNavigationLayout:
