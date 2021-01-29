@@ -65,14 +65,14 @@ class MainWindow(Screen):
     current = ""
 
     def log_out(self):
-        sm.current("login")
+        sm.current = "login"
 
     def on_enter(self, *args):
         password, name, created = db.get_user(self.current)
-        self.n.text = "Account Name " + name
-        self.email.text = "Email " + self.current
-        self.password.text = "Password " + password
-        self.created.text = "This Account Was Created On " + created
+        self.n.text = "Account Name: " + name
+        self.email.text = "Email: " + self.current
+        self.password.text = "Password: " + password
+        self.created.text = "This Account Was Created On: " + created
 
 
 class WindowManager(ScreenManager):
@@ -80,16 +80,16 @@ class WindowManager(ScreenManager):
 
 
 def invalidInfo():
-    popup = Popup(title="Invalid Information",
+    pop = Popup(title="Invalid Information",
                   content=Label(text="Please Fill All The Required Inputs"),
                   size_hint=(None, None), size=(400, 400))
-    popup.open()
+    pop.open()
 
 def invalidLogin():
-    popup = Popup(title="Invalid Login",
+    pop = Popup(title="Invalid Login",
                   content=Label(text="The Entered Username or Password is Incorrect"),
                   size_hint=(None, None), size=(400, 400))
-    popup.open()
+    pop.open()
 
 
 kv = Builder.load_file("my.kv")
@@ -105,10 +105,6 @@ sm.current = "login"
 
 
 class MyFinanceApp(App):
-
-    def __init__(self, **kwargs):
-        self.title = "My Finance App"
-        super().__init__(**kwargs)
 
     def build(self):
         return sm
