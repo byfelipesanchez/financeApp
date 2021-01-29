@@ -1,6 +1,6 @@
 # financeApp
 
-<h1> Finance App
+
   <br>
   <br>
   <span> This an App based on KivyMD. Its idea is to protect information from each user 
