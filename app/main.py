@@ -94,9 +94,17 @@ sm.current = "login"
 
 
 class FinanceApp(MDApp):
+    # def __init__(self, **kwargs):
+    #     self.title = "FinanceApp"
+    #     self.theme_cls.theme_style = "Dark"
+    #     self.theme_cls.primary_palette = "DeepPurple"
+    #     super().__init__(**kwargs)
+
     def build(self):
-        self.theme_cls.theme_style = "Dark"  # "Light"
+        self.theme_cls.theme_style = "Dark"
+        self.root_widget = Builder.load_string(kv)
         return sm
 
 
-FinanceApp().run()
+if __name__ == "__main__":
+    FinanceApp().run()
