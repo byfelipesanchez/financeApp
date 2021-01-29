@@ -70,3 +70,12 @@
     # }
     #
     # self.add_widget
+
+
+            # self.theme_cls.theme_style = "Dark"
+        # self.root_widget = Builder.load_string(kv)
+    # def __init__(self, **kwargs):
+    #     self.title = "FinanceApp"
+    #     self.theme_cls.theme_style = "Dark"
+    #     self.theme_cls.primary_palette = "DeepPurple"
+    #     super().__init__(**kwargs)

@@ -35,10 +35,10 @@ class DataBase:
     def save(self):
         with open(self.filename, "w") as f:
             for user in self.users:
-                f.write(user + ";" + self.users[user][0] + ";" + self.users[user][1] + ";" + self.users[user][2] + "\n")
+                f.write(user + " ;" + self.users[user][0] +  " ;" + self.users[user][1] + " ;" + self.users[user][2] + "\n")
 
     @staticmethod
-    def get_date(self):
+    def get_date():
         return str(datetime.datetime.now()).split(" ")[0]
 
     def validation(self, email, password):

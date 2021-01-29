@@ -1,12 +1,6 @@
-
-import self as self
-import sm as sm
+from kivy.app import App
 from kivy.uix.label import Label
-from kivymd.app import MDApp
-from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDIconButton, MDRoundFlatButton
 from kivy.lang import Builder
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.popup import Popup
@@ -22,15 +16,25 @@ class AccountWindow(Screen):
         if self.name1.text != "" and self.email.text != "" and self.email.text.count(
                 "@") == 1 and self.email.text.count(".") > 0:
             if self.password.text != "":
+                db.add_user(self.email.text, self.password.text, self.name1.text)
+
                 self.reset()
 
                 sm.current = "login"
+
             else:
                 invalidInfo()
+        else:
+            invalidInfo()
 
     def login(self):
         self.reset()
-        sm.current
+        sm.current = "login"
+
+    def reset(self):
+        self.name1.text = ""
+        self.email.text = ""
+        self.password.text = ""
 
 
 class LoginWindow(Screen):
@@ -43,14 +47,13 @@ class LoginWindow(Screen):
             self.reset()
             sm.current = "main"
         else:
-            invalidInfo()
+            invalidLogin()
 
     def createButton(self):
         self.reset()
         sm.current = "create"
 
     def reset(self):
-        self.name1.text = ""
         self.email.text = ""
         self.password.text = ""
 
@@ -58,7 +61,8 @@ class LoginWindow(Screen):
 class MainWindow(Screen):
     n: ObjectProperty(None)
     email: ObjectProperty(None)
-    createdDate: ObjectProperty(None)
+    created: ObjectProperty(None)
+    current = ""
 
     def log_out(self):
         sm.current("login")
@@ -77,34 +81,40 @@ class WindowManager(ScreenManager):
 
 def invalidInfo():
     popup = Popup(title="Invalid Information",
+                  content=Label(text="Please Fill All The Required Inputs"),
+                  size_hint=(None, None), size=(400, 400))
+    popup.open()
+
+def invalidLogin():
+    popup = Popup(title="Invalid Login",
                   content=Label(text="The Entered Username or Password is Incorrect"),
                   size_hint=(None, None), size=(400, 400))
     popup.open()
 
 
-kv = Builder.load_file("finance.kv")
+kv = Builder.load_file("my.kv")
 
 sm = WindowManager()
 db = DataBase("users.txt")
-screens: [LoginWindow(name="login"), AccountWindow(name="create"), MainWindow(name="main")]
+
+screens = [LoginWindow(name="login"), AccountWindow(name="create"), MainWindow(name="main")]
 for screen in screens:
     sm.add_widget(screen)
 
 sm.current = "login"
 
 
-class FinanceApp(MDApp):
-    # def __init__(self, **kwargs):
-    #     self.title = "FinanceApp"
-    #     self.theme_cls.theme_style = "Dark"
-    #     self.theme_cls.primary_palette = "DeepPurple"
-    #     super().__init__(**kwargs)
+class MyFinanceApp(App):
+
+    def __init__(self, **kwargs):
+        self.title = "My Finance App"
+        super().__init__(**kwargs)
 
     def build(self):
-        self.theme_cls.theme_style = "Dark"
-        self.root_widget = Builder.load_string(kv)
         return sm
+        # self.theme_cls.theme_style = "Dark"  # "Light"
 
 
 if __name__ == "__main__":
-    FinanceApp().run()
+    MyFinanceApp().run()
+
