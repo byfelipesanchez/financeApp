@@ -1,4 +1,3 @@
-
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.lang import Builder
@@ -6,6 +5,9 @@ from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.popup import Popup
 from database import DataBase
+from kivy.factory import Factory
+from kivy.core.window import Window
+from kivy.properties import OptionProperty
 
 
 class AccountWindow(Screen):
@@ -42,15 +44,15 @@ class LoginWindow(Screen):
     email = ObjectProperty(None)
     password = ObjectProperty(None)
 
-    def loginButton(self):
-        if db.validation(self.email.text, self.password.text):
+    def login_button(self):
+        if db.validate(self.email.text, self.password.text):
             MainWindow.current = self.email.text
             self.reset()
             sm.current = "main"
         else:
             invalidLogin()
 
-    def createButton(self):
+    def create_button(self):
         self.reset()
         sm.current = "create"
 
@@ -81,15 +83,13 @@ class WindowManager(ScreenManager):
 
 
 def invalidInfo():
-    pop = Popup(title="Invalid Information",
-                  content=Label(text="Please Fill All The Required Inputs"),
-                  size_hint=(None, None), size=(400, 400))
+    pop = Popup(title="Invalid Information", content=Label(text="Please Fill All The Required Inputs"),
+                size_hint=(None, None), size=(400, 400))
     pop.open()
 
 def invalidLogin():
-    pop = Popup(title="Invalid Login",
-                  content=Label(text="The Entered Username or Password is Incorrect"),
-                  size_hint=(None, None), size=(400, 400))
+    pop = Popup(title="Invalid Login", content=Label(text="The Entered Username or Password is Incorrect"),
+                size_hint=(None, None), size=(400, 400))
     pop.open()
 
 
@@ -107,9 +107,23 @@ sm.current = "login"
 
 class MyFinanceApp(App):
 
+    media = OptionProperty('M', options=('XS', 'S', 'M', 'L', 'XL'))
+
     def build(self):
+        Window.bind(size=self.update_media)
         return sm
         # self.theme_cls.theme_style = "Dark"  # "Light"
+
+
+    def update_media(self, win, size):
+        width, height = size
+        self.media = (
+            'XS' if width < 250 else
+            'S' if width < 500 else
+            'M' if width < 1000 else
+            'L' if width < 1200 else
+            'XL'
+        )
 
 
 if __name__ == "__main__":

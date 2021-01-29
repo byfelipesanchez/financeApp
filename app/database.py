@@ -1,5 +1,3 @@
-
-
 import datetime
 
 
@@ -32,10 +30,10 @@ class DataBase:
             self.save()
             return 1
         else:
-            print("This Email Already Exists")
+            print("Email exists already")
             return -1
 
-    def validation(self, email, password):
+    def validate(self, email, password):
         if self.get_user(email) != -1:
             return self.users[email][0] == password
         else:
@@ -44,10 +42,8 @@ class DataBase:
     def save(self):
         with open(self.filename, "w") as f:
             for user in self.users:
-                f.write(user + " ; " + self.users[user][0] + " ; " + self.users[user][1] + " ; " + self.users[user][2] + "\n")
+                f.write(user + ";" + self.users[user][0] + ";" + self.users[user][1] + ";" + self.users[user][2] + "\n")
 
     @staticmethod
     def get_date():
         return str(datetime.datetime.now()).split(" ")[0]
-
-
