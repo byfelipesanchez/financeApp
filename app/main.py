@@ -5,9 +5,10 @@ from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.popup import Popup
 from database import DataBase
-from kivy.factory import Factory
 from kivy.core.window import Window
 from kivy.properties import OptionProperty
+from kivy.clock import Clock
+Clock.max_iteration = 50
 
 
 class AccountWindow(Screen):
@@ -106,14 +107,12 @@ sm.current = "login"
 
 
 class MyFinanceApp(App):
-
     media = OptionProperty('M', options=('XS', 'S', 'M', 'L', 'XL'))
 
     def build(self):
+        Window.clearcolor = (0, 0.50196078431, 0.50196078431, 0.00392156862)
         Window.bind(size=self.update_media)
         return sm
-        # self.theme_cls.theme_style = "Dark"  # "Light"
-
 
     def update_media(self, win, size):
         width, height = size
