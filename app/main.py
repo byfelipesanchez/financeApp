@@ -1,14 +1,14 @@
 from kivymd.app import MDApp
-# from kivymd.uix.label import MDLabel
+from kivymd.uix.label import MDLabel
 from kivy.uix.label import Label
 from kivy.lang import Builder
+from kivymd.uix.button import MDRoundFlatButton
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.popup import Popup
-# from kivymd.uix.tab import MDTabsBase
+from kivymd.uix.tab import MDTabsBase
 from database import DataBase
-# from kivy.core.window import Window
-# from kivy.properties import OptionProperty
+from kivy.uix.floatlayout import FloatLayout
 from kivy.clock import Clock
 Clock.max_iteration = 50
 
@@ -82,6 +82,21 @@ class MainWindow(Screen):
         self.password.text = "Password: " + password
         self.created.text = "This Account Was Created On: " + created
 
+    def on_tab_switch(
+            self, instance_tabs, instance_tab, instance_tab_label, tab_text
+    ):
+        '''Called when switching tabs.
+        :type instance_tabs: <kivymd.uix.tab.MDTabs object>;
+        :param instance_tab: <__main__.Tab object>;
+        :param instance_tab_label: <kivymd.uix.tab.MDTabsLabel object>;
+        :param tab_text: text or name icon of tab;
+        '''
+        pass
+
+
+class Tab(FloatLayout, MDTabsBase):
+    '''Class implementing content for a tab.'''
+
 
 class WindowManager(ScreenManager):
     pass
@@ -109,12 +124,14 @@ class MainApp(MDApp):
     #     self.theme_cls.theme_style = "Dark"
 
     def build(self):
+        self.theme_cls.theme_style = "Dark"  # "Light"
         screens = [LoginWindow(name="login"), AccountWindow(name="create"), MainWindow(name="main")]
         sm = ScreenManager()
         for screen in screens:
             sm.add_widget(screen)
             sm.current = "login"
         return sm
+
 
 if __name__ == "__main__":
     MainApp().run()
