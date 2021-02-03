@@ -161,11 +161,21 @@
                 app.root.current = "login"
                 root.manager.transition.direction = "down"
 
-        MDTabs:
-            on_tab_switch: app.on_tab_switch(*args)
-            Tab:
-                text: "Tab 1"
-            Tab:
-                text: "Tab 2"
-            Tab:
-                text: "Tab 3"
+BoxLayout:
+    orientation: "vertical"
+
+    MDToolbar:
+        title: "Example Tabs"
+
+    MDTabs:
+        id: tabs
+
+
+<Tab>:
+
+    MDIconButton:
+        id: icon
+        icon: "arrow-right"
+        user_font_size: "48sp"
+        pos_hint: {"center_x": .5, "center_y": .5}
+        on_release: app.switch_tab()
