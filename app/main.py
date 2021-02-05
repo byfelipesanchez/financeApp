@@ -1,8 +1,6 @@
 from kivymd.app import MDApp
-from kivymd.uix.label import MDLabel
 from kivy.uix.label import Label
 from kivy.lang import Builder
-from kivymd.uix.button import MDRoundFlatButton
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.popup import Popup
@@ -12,8 +10,6 @@ from kivymd.icon_definitions import md_icons
 from kivy.uix.floatlayout import FloatLayout
 from kivy.clock import Clock
 Clock.max_iteration = 50
-
-
 
 
 class AccountWindow(Screen):
@@ -83,6 +79,9 @@ class MainWindow(Screen):
         self.password.text = "Password: " + password
         self.created.text = "This Account Was Created On: " + created
 
+class TabScreens(ScreenManager):
+    def switch(self, tabs, tab, label, main):
+        self.current = main
 
 class Tab(FloatLayout, MDTabsBase):
     '''Class implementing content for a tab.'''
@@ -92,11 +91,11 @@ class WindowManager(ScreenManager):
     pass
 
 
-
 def invalidInfo():
     pop = Popup(title="Invalid Information", content=Label(text="Please Fill All The Required Inputs"),
                 size_hint=(None, None), size=(400, 400))
     pop.open()
+
 
 def invalidLogin():
     pop = Popup(title="Invalid Login", content=Label(text="The Entered Username or Password is Incorrect"),
@@ -122,22 +121,22 @@ class MainApp(MDApp):
             sm.current = "login"
         return sm
 
-    def __init__(self):
-        MainApp.init(self)
-        self.iter_list = iter(list(self.icons))
-
-
-    def on_start(self):
-        for name_tab in list(self.icons):
-            self.root.ids.tabs.add_widget(Tab(text=name_tab))
-
-    def switch_tab(self):
-        '''Switching the tab by name.'''
-
-        try:
-            self.root.ids.tabs.switch_tab(next(self.iter_list))
-        except StopIteration:
-            pass
+    # def __init__(self):
+    #     MainApp.init(self)
+    #     self.iter_list = iter(list(self.icons))
+    #
+    #
+    # def on_start(self):
+    #     for name_tab in list(self.icons):
+    #         self.root.ids.tabs.add_widget(Tab(text=name_tab))
+    #
+    # def switch_tab(self):
+    #     '''Switching the tab by name.'''
+    #
+    #     try:
+    #         self.root.ids.tabs.switch_tab(next(self.iter_list))
+    #     except StopIteration:
+    #         pass
 
 
 if __name__ == "__main__":

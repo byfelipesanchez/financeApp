@@ -126,56 +126,39 @@
     created: created
 
     FloatLayout:
-
-
         MDLabel:
             id: n
             pos_hint:{"x": 0.1, "top":0.9}
             size_hint:0.8, 0.2
             text: "Account Name: "
-
         MDLabel:
             id: password
             pos_hint:{"x": 0.1, "top":0.6}
             size_hint:0.8, 0.2
             text: "Your Password Is: "
-
-
         MDLabel:
             id: email
             pos_hint:{"x": 0.1, "top":0.8}
             size_hint:0.8, 0.2
             text: "Email: "
 
-        MDLabel:
-            id: created
-            pos_hint:{"x": 0.1, "top":0.7}
-            size_hint:0.8, 0.2
-            text: "Created: "
 
-        MDRoundFlatButton:
-            pos_hint:{"x":0.2, "y": 0.1}
-            size_hint:0.6,0.2
-            text: "Log Out"
-            on_release:
-                app.root.current = "login"
-                root.manager.transition.direction = "down"
-
-BoxLayout:
-    orientation: "vertical"
-
-    MDToolbar:
-        title: "Example Tabs"
-
-    MDTabs:
-        id: tabs
-
-
-<Tab>:
-
-    MDIconButton:
-        id: icon
-        icon: "arrow-right"
-        user_font_size: "48sp"
-        pos_hint: {"center_x": .5, "center_y": .5}
-        on_release: app.switch_tab()
+Screen:
+    BoxLayout:
+        orientation: 'vertical'
+        MDTabs:
+            size_hint_y: .05
+            on_tab_switch: sm.switch(*args)
+            Tab:
+                text: 'main'
+            Tab:
+                text: 'screen2'
+        TabScreens:
+            size_hint_y: .95
+            id: sm
+            MainWindow:
+                name: 'main'
+            Screen:
+                name: 'screen2'
+                MDLabel:
+                    text: 'screen2'

@@ -1,81 +1,64 @@
-        #test = MDLabel(text='sup', halign='center', theme_text_color='Custom',
-                       text_color=(127/255.0, 30/255.0, 33/255.0), #to add your own costum color
-                       font_style='H1')
-        # icon = MDIcon(icon='language-python', halign='right')
+
+    FloatLayout:
 
 
-            def build(self):
-        screen = Screen()
+        MDLabel:
+            id: n
+            pos_hint:{"x": 0.1, "top":0.9}
+            size_hint:0.8, 0.2
+            text: "Account Name: "
 
-        # username = MDTextField(text='Enter Username',
-        #                        pos_hint={'center_x':0.5, 'center_y':0.5 },
-        #                        size_hint_x=None, width=300)
-
-    #     button = MDRectangleFlatButton(text='show',
-    #                                    pos_hint={'center_x': 0.5, 'center_y': 0.4},
-    #                                    on_release=self.show_data)
-    #     self.username = Builder.load_string(username_helper)
-    #     screen.add_widget(self.username)
-    #     screen.add_widget(button)
-    #     return screen
-    #
-    # def show_data(self, obj):
-    #     if self.username.text is "":
-    #         check_string = 'Please Enter a Username'
-    #     else:
-    #         check_string =  'This Username Does Not Exist'
-    #     close_btn = MDRoundFlatButton(text='Close', on_release=self.close_dialog)
-    #     self.dialog = MDDialog(title='User', text=check_string,
-    #                            size_hint=(0.7, 1),
-    #                            buttons=[close_btn])
-    #     self.dialog.open()
-    #     # print(self.username.text)
-    #
-    # def close_dialog(self, obj):
-    #     self.dialog.dismiss()
+        MDLabel:
+            id: password
+            pos_hint:{"x": 0.1, "top":0.6}
+            size_hint:0.8, 0.2
+            text: "Your Password Is: "
 
 
-    # import pyrebase
-#
-# firebaseConfig = {'apiKey': "AIzaSyA__3SaVDKctOKYRVRyAJGCvFjGcLVp8eI",
-#                   'authDomain': "financeapp-bf7c8.firebaseapp.com",
-#                   'projectId': "financeapp-bf7c8",
-#                   'storageBucket': "financeapp-bf7c8.appspot.com",
-#                   'messagingSenderId': "4272125286",
-#                   'appId': "1:4272125286:web:1e14d1d14ea5d0a89e44a7",
-#                   'measurementId': "G-5K7NJSTM8D"}
-#
-#
-# class auth(object):
-#     def auth2(self):
-#         firebase = pyrebase.initialize_app(firebaseConfig)
-#         user = firebase.auth()
-#         self.database_url = firebaseConfig["databaseURL"]
-#
-#
-# def signup():
-#     email = input("enter email:")
-#     password = input("enter password:")
-#     user = auth.create_user_email_and_password(email, password)
-#
-#
-# signup()ui
+        MDLabel:
+            id: email
+            pos_hint:{"x": 0.1, "top":0.8}
+            size_hint:0.8, 0.2
+            text: "Email: "
 
+        MDLabel:
+            id: created
+            pos_hint:{"x": 0.1, "top":0.7}
+            size_hint:0.8, 0.2
+            text: "Created: "
 
+        MDRoundFlatButton:
+            pos_hint:{"x":0.2, "y": 0.1}
+            size_hint:0.6,0.2
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
 
-    # data = {
-    #     'currency-usd-off': 'Expense',
-    #     'currency-usd': 'Saving'
-    #
-    # }
-    #
-    # self.add_widget
+<Tab@FloatLayout+MDTabsBase>:
+    name: ""
+    MDLabel:
+        text: root.name
+        pos_hint: {'center_x': .5, 'center_y': .5}
 
-
-            # self.theme_cls.theme_style = "Dark"
-        # self.root_widget = Builder.load_string(kv)
-    # def __init__(self, **kwargs):
-    #     self.title = "FinanceApp"
-    #     self.theme_cls.theme_style = "Dark"
-    #     self.theme_cls.primary_palette = "DeepPurple"
-    #     super().__init__(**kwargs)
+Screen:
+    FloatLayout:
+        orientation: 'vertical'
+        MDTabs:
+            size_hint_y: .05
+            on_tab_switch: sm.switch(*args)
+            Tab:
+                text: 'screen1'
+            Tab:
+                text: 'screen2'
+        TabScreens:
+            size_hint_y: .95
+            id: sm
+            Screen:
+                name: 'screen1'
+                MDLabel:
+                    text: 'screen1'
+            Screen:
+                name: 'screen2'
+                MDLabel:
+                    text: 'screen2'
