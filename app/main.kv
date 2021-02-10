@@ -126,27 +126,24 @@
     created: created
 
     FloatLayout:
-        MDLabel:
-            id: n
-            pos_hint:{"x": 0.1, "top":0.9}
-            size_hint:0.8, 0.2
-            text: "Account Name: "
-        MDLabel:
-            id: password
-            pos_hint:{"x": 0.1, "top":0.6}
-            size_hint:0.8, 0.2
-            text: "Your Password Is: "
-        MDLabel:
-            id: created
-            pos_hint:{"x": 0.1, "top":0.7}
-            size_hint:0.8, 0.2
-            text: "This account was created on: "
-        MDLabel:
-            id: email
-            pos_hint:{"x": 0.1, "top":0.8}
-            size_hint:0.8, 0.2
-            text: "Email: "
+        orientation: 'vertical'
+        MDToolbar:
+            title: "WhatsApp"
+            right_action_items: [ ['magnify', lambda x: print("magnify")], ['message-reply-text', lambda x: print('chat')], ['dots-vertical', lambda x: print('dots-vertical')] ]
+        MDTabs:
+            id: android_tabs
+            on_tab_switch: app.on_tab_switch(*args)
+            Tab:
+                text: "CALLS"
+            Tab:
+                text: "CHATS"
+                ScrollView:
+                    MDList:
+                        id: list
 
-        MD
+            Tab:
+                text: "CONTACTS"
+
+#TODO: add logout button and tabs
 
 

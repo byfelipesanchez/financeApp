@@ -79,12 +79,11 @@ class MainWindow(Screen):
         self.password.text = "Password: " + password
         self.created.text = "This Account Was Created On: " + created
 
+
+
 class TabScreens(ScreenManager):
     def switch(self, tabs, tab, label, main):
         self.current = main
-
-class Tab(FloatLayout, MDTabsBase):
-    '''Class implementing content for a tab.'''
 
 
 class WindowManager(ScreenManager):
@@ -107,10 +106,6 @@ db = DataBase("users.txt")
 
 
 class MainApp(MDApp):
-    icons = list(md_icons.keys())[15:30]
-    # def __init__(self, **kwargs):
-    #     super().__init__(**kwargs)
-    #     self.theme_cls.theme_style = "Dark"
 
     def build(self):
         self.theme_cls.theme_style = "Dark"  # "Light"
@@ -121,22 +116,20 @@ class MainApp(MDApp):
             sm.current = "login"
         return sm
 
-    # def __init__(self):
-    #     MainApp.init(self)
-    #     self.iter_list = iter(list(self.icons))
-    #
-    #
-    # def on_start(self):
-    #     for name_tab in list(self.icons):
-    #         self.root.ids.tabs.add_widget(Tab(text=name_tab))
-    #
-    # def switch_tab(self):
-    #     '''Switching the tab by name.'''
-    #
-    #     try:
-    #         self.root.ids.tabs.switch_tab(next(self.iter_list))
-    #     except StopIteration:
-    #         pass
+    def on_tab_switch(
+            self, instance_tabs, instance_tab, instance_tab_label, tab_text
+    ):
+        '''Called when switching tabs.
+        :type instance_tabs: <kivymd.uix.tab.MDTabs object>;
+        :param instance_tab: <__main__.Tab object>;
+        :param instance_tab_label: <kivymd.uix.tab.MDTabsLabel object>;
+        :param tab_text: text or name icon of tab;
+        '''
+        pass
+
+
+class Tab(FloatLayout, MDTabsBase):
+    '''Class implementing content for a tab.'''
 
 
 if __name__ == "__main__":
