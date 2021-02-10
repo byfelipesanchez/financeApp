@@ -137,28 +137,16 @@
             size_hint:0.8, 0.2
             text: "Your Password Is: "
         MDLabel:
+            id: created
+            pos_hint:{"x": 0.1, "top":0.7}
+            size_hint:0.8, 0.2
+            text: "This account was created on: "
+        MDLabel:
             id: email
             pos_hint:{"x": 0.1, "top":0.8}
             size_hint:0.8, 0.2
             text: "Email: "
 
+        MD
 
-Screen:
-    BoxLayout:
-        orientation: 'vertical'
-        MDTabs:
-            size_hint_y: .05
-            on_tab_switch: sm.switch(*args)
-            Tab:
-                text: 'main'
-            Tab:
-                text: 'screen2'
-        TabScreens:
-            size_hint_y: .95
-            id: sm
-            MainWindow:
-                name: 'main'
-            Screen:
-                name: 'screen2'
-                MDLabel:
-                    text: 'screen2'
+
