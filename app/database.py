@@ -44,6 +44,11 @@ class DataBase:
             for user in self.users:
                 f.write(user + ";" + self.users[user][0] + ";" + self.users[user][1] + ";" + self.users[user][2] + "\n")
 
+
     @staticmethod
     def get_date():
         return str(datetime.datetime.now()).split(" ")[0]
+
+    def add_information(self):
+        if website.strip() not in self.users:
+            self.users[website.strip()]

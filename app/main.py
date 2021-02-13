@@ -67,6 +67,7 @@ class MainWindow(Screen):
     n = ObjectProperty(None)
     email = ObjectProperty(None)
     created = ObjectProperty(None)
+    newInfo = ObjectProperty(None)
     current = ""
 
     def log_out(self):
@@ -78,6 +79,19 @@ class MainWindow(Screen):
         self.email.text = "Email: " + self.current
         self.password.text = "Password: " + password
         self.created.text = "This Account Was Created On: " + created
+
+    def new_info(self):
+        self.manager.current = "newInfo"
+
+
+class NewInfoWindow(Screen):
+    website = ObjectProperty(None)
+    password1 = ObjectProperty(None)
+
+    def submit1(self):
+        if self.website.text != ""
+
+
 
 
 
@@ -109,7 +123,7 @@ class MainApp(MDApp):
 
     def build(self):
         self.theme_cls.theme_style = "Dark"  # "Light"
-        screens = [LoginWindow(name="login"), AccountWindow(name="create"), MainWindow(name="main")]
+        screens = [LoginWindow(name="login"), AccountWindow(name="create"), MainWindow(name="main"), NewInfoWindow(name="newInfo")]
         sm = ScreenManager()
         for screen in screens:
             sm.add_widget(screen)
