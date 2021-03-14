@@ -1,5 +1,5 @@
-<h1> Password App
-<hr>
-  
- - At first, this was a finace app... but i realized that it's not possible to make an app with graphs and stuff with Kivy.
- - So I changed it to a password saving app where you can add new info and see you private passwords and stuff
+### First attempt at a kivy app
+
+dont know what this is. i was thinking about creating a productivity app, but kivy is not that best module for that. <br>
+i was able to create a login and database storage thingy which is rly cool. <br>
+might turn this into something one day... or ill just make a react native app lol.
