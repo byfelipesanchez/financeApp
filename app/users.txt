@@ -1,4 +1,3 @@
-2018.felipe.sanchez@gmail.com;girafavermelha17;Felipe Sánchez;2021-01-29
 @.;1;test account;2021-01-29
 @..;1;1;2021-02-01
 test@test.com;test123;Test Account;2021-02-01
